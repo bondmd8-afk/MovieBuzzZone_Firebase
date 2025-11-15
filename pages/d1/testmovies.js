@@ -1,44 +1,36 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import Image from "next/image";
+import Link from "next/link";
 
-export default function DownloadPage() {
-  const router = useRouter();
-  const { id } = router.query;
-  const [countdown, setCountdown] = useState(5);
+const movies = [
+  {
+    id: 1,
+    title: "Test Movies",
+    size: "700MB",
+    poster: "https://1024terabox.com/s/1vn5KYPuR35JZs2guWQTx1w",
+    download: "/go/1", // hidden TeraBox link
+  },
+];
 
-  useEffect(() => {
-    if (!id) return;
-
-    // 3 Ads (replace with your actual ad URLs)
-    const ads = [
-      "https://example-ad1.com",
-      "https://example-ad2.com",
-      "https://example-ad3.com"
-    ];
-
-    // Open ads in new tabs
-    ads.forEach(ad => window.open(ad, "_blank"));
-
-    // Countdown
-    const interval = setInterval(() => {
-      setCountdown(prev => prev - 1);
-    }, 1000);
-
-    // After countdown, fetch masked link and redirect
-    setTimeout(async () => {
-      clearInterval(interval);
-      const res = await fetch(`/api/redirect?file=${id}`);
-      const link = await res.text();
-      window.location.href = link; // Redirect to your TeraBox file
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [id]);
-
+export default function TestMovies() {
   return (
-    <div style={{textAlign:"center", padding:50, background:"#0a0a0a", color:"#fff", minHeight:"100vh"}}>
-      <h2 style={{color:"#ff3d00"}}>Preparing your download for Test Movie...</h2>
-      <p>Redirecting in {countdown} seconds...</p>
+    <div>
+      <h1>Test Movies</h1>
+      {movies.map((movie) => (
+        <div key={movie.id} style={{ marginBottom: "30px" }}>
+          <h2>{movie.title}</h2>
+          <p>Size: {movie.size}</p>
+          <Image
+            src={movie.poster}
+            width={300}
+            height={450}
+            alt={movie.title}
+          />
+          <br />
+          <Link href={movie.download} target="_blank">
+            <button>Download</button>
+          </Link>
+        </div>
+      ))}
     </div>
   );
 }
