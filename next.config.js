@@ -1,5 +1,9 @@
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ["i.ibb.co"], // তোমার poster host domain
+    domains: ["1024terabox.com"], // poster host
   },
 };
+
+module.exports = nextConfig;
