@@ -7,13 +7,13 @@ const movies = [
     title: "Test Movies",
     size: "700MB",
     poster: "https://1024terabox.com/s/1vn5KYPuR35JZs2guWQTx1w",
-    download: "/go/1", // hidden TeraBox link
+    download: "/go/1",
   },
 ];
 
 export default function TestMovies() {
   return (
-    <div>
+    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
       <h1>Test Movies</h1>
       {movies.map((movie) => (
         <div key={movie.id} style={{ marginBottom: "30px" }}>
@@ -26,7 +26,7 @@ export default function TestMovies() {
             alt={movie.title}
           />
           <br />
-          <Link href={movie.download} target="_blank">
+          <Link href={movie.download}>
             <button>Download</button>
           </Link>
         </div>
