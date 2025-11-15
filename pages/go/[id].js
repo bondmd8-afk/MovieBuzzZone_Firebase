@@ -1,4 +1,3 @@
-// pages/go/[id].js
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -8,9 +7,9 @@ const demoAds = [
   "https://example.com/ad3",
 ];
 
+// তোমার TeraBox link বসানো হলো
 const downloadLinks = {
-  1: "https://1024terabox.com/s/1-D6l--HRcEquANJEQ3hqtg",
-  2: "https://1024terabox.com/s/demo-link-2",
+  1: "https://1024terabox.com/s/1pqNq4SJhsk2R6ytdFfnE-g",
 };
 
 export default function GoPage() {
@@ -31,12 +30,12 @@ export default function GoPage() {
   }, [step, id]);
 
   return (
-    <div>
+    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
       <h1>Preparing your download...</h1>
       <p>
         Step {step + 1} of {demoAds.length + 1}
       </p>
+      <p>Please wait while ads are loading.</p>
     </div>
   );
 }
-
